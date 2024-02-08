@@ -27,5 +27,6 @@ class Face:
     def profile(self) -> Profile | None:
         return self._profile
 
-    def set_profile(self, profile: Profile) -> None:
+    @profile.setter
+    def profile(self, profile: Profile) -> None:
         self._profile = profile
