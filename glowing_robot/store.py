@@ -1,5 +1,5 @@
 import numpy as np
-from database import add_descriptors, get_profile
+from .database import add_descriptors, get_profile
 
 from .model import model as model
 from .face import Face
