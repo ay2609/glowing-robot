@@ -22,6 +22,5 @@ mynn~=0.9.4
 noggin~=0.10.1
 facenet-pytorch~=2.5.3
 cog-datasets~=0.2.0
-microphone~=1.1
 ml-dtypes~=0.3.2
 jax-metal~=0.0.5
