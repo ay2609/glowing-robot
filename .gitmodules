@@ -1,0 +1,9 @@
+[submodule "facenet_models"]
+	path = facenet_models
+	url = https://github.com/CogWorksBWSI/facenet_models.git
+[submodule "Camera"]
+	path = Camera
+	url = https://github.com/CogWorksBWSI/Camera.git
+[submodule "DataSets"]
+	path = DataSets
+	url = https://github.com/CogWorksBWSI/DataSets.git
