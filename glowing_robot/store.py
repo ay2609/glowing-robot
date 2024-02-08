@@ -1,9 +1,10 @@
+import numpy as np
+
 from model import model as model
 from face import Face
 
 
-def image_to_faces(image):
-
+def image_to_faces(image: np.ndarray) -> list[Face]:
     boxes, probabilities, landmarks = model.detect(image)
     descriptors = model.compute_descriptors(image, boxes)
 
