@@ -12,7 +12,7 @@ def _cosine_similarity(desc_1, desc_2):
     return np.dot(desc_1, desc_2) / (np.linalg.norm(desc_1) * np.linalg.norm(desc_2))
 
 
-def determine_similarity(desc_1, desc_2, threshold = DESCRIPTOR_THRESHOLD) -> bool:
+def determine_similarity(desc_1, desc_2, threshold=DESCRIPTOR_THRESHOLD) -> bool:
     """
     :param desc_1: descriptor vector of face #1
     :param desc_2: descriptor vector of face #2
