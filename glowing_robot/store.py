@@ -1,7 +1,7 @@
 import numpy as np
 
-from model import model as model
-from face import Face
+from .model import model as model
+from .face import Face
 
 
 def image_to_faces(image: np.ndarray) -> list[Face]:
