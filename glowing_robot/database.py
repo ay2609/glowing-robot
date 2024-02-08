@@ -13,7 +13,7 @@ _default_path = Path(os.path.dirname(os.path.abspath(__file__))) / "face_db.pkl"
 _path = _default_path
 
 
-class _Profile:
+class Profile:
     """ Saves profile information in the face-recognition database."""
 
     def __init__(self, name: str):
@@ -67,7 +67,7 @@ class _Profile:
         return self._mean
 
 
-_face_db: Optional[Dict[str, _Profile]] = None
+_face_db: Optional[Dict[str, Profile]] = None
 
 
 def _load(force: bool = False):
@@ -213,7 +213,7 @@ def add_images(
 
     if descriptors:
         name = name.lower()
-        profile = _face_db.setdefault(name, _Profile(name))
+        profile = _face_db.setdefault(name, Profile(name))
         profile.add_descriptors(np.vstack(descriptors))
         print(
             f"{name} had {len(descriptors)} descriptors added to his/her profile; {profile.num_entries} in total"
@@ -237,7 +237,7 @@ def add_descriptors(names: Iterable[str], descriptors: Iterable[np.ndarray]):
         if name is None:
             continue
         name = name.lower()
-        profile = _face_db.setdefault(name, _Profile(name))
+        profile = _face_db.setdefault(name, Profile(name))
         profile.add_descriptors(descriptor)
 
 
