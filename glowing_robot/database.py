@@ -128,7 +128,7 @@ def save():
     print(f"Face database saved to: {_path.absolute()}")
 
 
-def switch_db(path: Optional[Union[str, _Path]] = None):
+def switch_db(path: Optional[Union[str, Path]] = None):
     """Switch the face database being used by specifying its load/save path. Calling this
     function with no argument will revert to the default database.
     Providing a name with no directories will assume face_rec/face_db as the directory,
@@ -164,7 +164,7 @@ def switch_db(path: Optional[Union[str, _Path]] = None):
 @load_face_db
 def add_images(
         name: str,
-        items: Union[str, _Path, np.ndarray, Iterable[Union[str, _Path, np.ndarray]]],
+        items: Union[str, Path, np.ndarray, Iterable[Union[str, Path, np.ndarray]]],
 ):
     """Extract face-descriptors from the provided images, and add them to the
     face-recognition database.
@@ -185,7 +185,7 @@ def add_images(
             "A face-database profile name must have a first and last name: 'John Smith' "
         )
 
-    if isinstance(items, (str, _Path)) or (
+    if isinstance(items, (str, Path)) or (
             isinstance(items, np.ndarray) and items.ndim == 3
     ):
         items = [items]
@@ -194,7 +194,7 @@ def add_images(
         return x[..., :-1] if x.shape[-1] == 4 else x  # png -> RGB
 
     arrays = (
-        to_3_channel(io.imread(x)) if isinstance(x, (str, _Path)) else x for x in items
+        to_3_channel(io.imread(x)) if isinstance(x, (str, Path)) else x for x in items
     )
 
     descriptors = []
