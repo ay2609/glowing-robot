@@ -9,7 +9,7 @@ from facenet_models import FacenetModel
 
 _T = TypeVar("_T")
 
-_default_path = Path(os.path.dirname(os.path.abspath(__file__))) / "face_db.pkl"
+_default_path = Path(os.getcwd()) / "face_db.pkl"
 _path = _default_path
 
 
