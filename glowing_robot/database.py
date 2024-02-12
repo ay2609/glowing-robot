@@ -266,6 +266,16 @@ def get_profile(key: str):
 
 
 @load_face_db
+def get_db() -> dict[str, Profile]:
+    """Returns the face db.
+    Returns
+    -------
+    face_rec.face_db._Profile
+    """
+    return _face_db
+
+
+@load_face_db
 def delete_profile(key: str):
     """Removes the specified profile from the database.
     Parameters
