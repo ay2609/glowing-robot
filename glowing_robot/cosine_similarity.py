@@ -20,4 +20,6 @@ def determine_similarity(desc_1, desc_2, threshold=DESCRIPTOR_THRESHOLD) -> bool
     :return: result: a boolean value which tells you if the two descriptor vectors (or faces) are similar
     """
 
-    return _cosine_similarity(desc_1, desc_2) > threshold
+    similarity = _cosine_similarity(desc_1, desc_2)
+
+    return similarity > threshold, similarity
