@@ -9,7 +9,7 @@ def identify_face(face: Face) -> None:
     name_to_descriptor = np.asarray([[profile.mean, name] for name, profile in get_db().items() if len(profile.mean) > 0], dtype="object")
     bool_to_similarity = np.array([determine_similarity(face.descriptor, descriptor) for descriptor in name_to_descriptor[:, 0]])
 
-    best_descriptors = zip(name_to_descriptor[bool_to_similarity[:, 1]], bool_to_similarity[bool_to_similarity[:, 0]][:, 1])
+    best_descriptors = zip(name_to_descriptor[bool_to_similarity[:, 0]], bool_to_similarity[bool_to_similarity[:, 0]][:, 1])
 
     if not best_descriptors:
         best_person = max(best_descriptors, key=lambda x: x[1])
