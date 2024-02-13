@@ -1,5 +1,5 @@
 import numpy as np
-from const import DESCRIPTOR_THRESHOLD
+from .const import DESCRIPTOR_THRESHOLD
 
 
 def _cosine_similarity(desc_1, desc_2):

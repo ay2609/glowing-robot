@@ -5,7 +5,7 @@ from .database import get_db, get_profile, Profile
 from .cosine_similarity import determine_similarity
 
 
-def identify_face(face: Face) -> str:
+def identify_face(face: Face) -> None:
     name_to_descriptor = np.array([(profile.mean, name) for name, profile in get_db().items])
     bool_to_similarity = determine_similarity(face.descriptor, name_to_descriptor[:, 0])
 
@@ -16,6 +16,4 @@ def identify_face(face: Face) -> str:
         best_profile = get_profile(best_person[0])
         face.profile = best_profile
         best_profile.add_descriptors(best_person[1])
-        return best_person[0]
-    else:
-        return "unknown"
+        face.profile = best_profile
