@@ -1,7 +1,8 @@
 import numpy as np
+
 from .database import add_descriptors, get_profile, save as save_database
 
-from glowing_robot.utils import model
+from .utils import model, accelerated_model
 from .face import Face
 
 
@@ -10,7 +11,7 @@ def image_to_faces(image: np.ndarray) -> list[Face]:
 
     faces = []
     if boxes is not None:
-        descriptors = model.compute_descriptors(image, boxes)
+        descriptors = accelerated_model.compute_descriptors(image, boxes)
 
         for probability, box, person_landmarks, descriptor in zip(probabilities, boxes, landmarks, descriptors):
             if probability > 0.75:

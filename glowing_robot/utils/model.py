@@ -1,10 +1,11 @@
 import torch
 from facenet_models import FacenetModel
 
-if False: #torch.backends.mps.is_available():
+if torch.backends.mps.is_available():
     device = 'mps'
     print(f'Using mps device')
 else:
     device = 'cpu'
 
-model = FacenetModel(device)
+model = FacenetModel()
+accelerated_model = FacenetModel(device)
