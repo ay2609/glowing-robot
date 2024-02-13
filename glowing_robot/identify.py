@@ -6,13 +6,15 @@ from .cosine_similarity import determine_similarity
 
 
 def identify_face(face: Face) -> None:
-    name_to_descriptor = np.asarray([[profile.mean, name] for name, profile in get_db().items() if len(profile.mean) > 0], dtype="object")
-    bool_to_similarity = np.array([determine_similarity(face.descriptor, descriptor) for descriptor in name_to_descriptor[:, 0]])
+    names = np.array([name for name in get_db()])
+    descriptors = np.array([get_profile(name).mean for name in names])
+    bool_to_similarity = [determine_similarity(face.descriptor, descriptor) for descriptor in descriptors]
+    bool_similarities = [bool_similarity for bool_similarity, _ in bool_to_similarity]
+    similarities = np.array([similarity for _, similarity in bool_to_similarity])
 
-    best_descriptors = zip(name_to_descriptor[bool_to_similarity[:, 0]], bool_to_similarity[bool_to_similarity[:, 0]][:, 1])
+    best_descriptors = dict(zip(names[bool_similarities], similarities[bool_similarities]))
 
-    if not best_descriptors:
-        best_person = max(best_descriptors, key=lambda x: x[1])
+    if len(best_descriptors) > 0:
+        best_person = max(best_descriptors.items(), key=lambda x: x[1])
         best_profile = get_profile(best_person[0])
         face.profile = best_profile
-        best_profile.add_descriptors(best_person[1])

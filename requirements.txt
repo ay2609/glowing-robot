@@ -24,3 +24,5 @@ facenet-pytorch~=2.5.3
 cog-datasets~=0.2.0
 ml-dtypes~=0.3.2
 jax-metal~=0.0.5
+pyobjc~=10.1
+pyobjc-framework-avfoundation~=10.1

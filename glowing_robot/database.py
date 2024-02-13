@@ -23,7 +23,7 @@ class Profile:
         name : str
             '<first-name> <last-name>' used to identify the database profile.
         """
-        self.name = name
+        self.name: str = name
         try:
             self.first, self.last = name.split()
         except TypeError:
@@ -32,6 +32,8 @@ class Profile:
             )
         self._descriptors: Optional[np.ndarray] = None
         self._mean: Optional[np.ndarray] = None
+
+        self._last_image: np.ndarray | None = None
 
     def add_descriptors(self, descriptors: np.ndarray):
         """Add descriptors to profile.
@@ -65,6 +67,14 @@ class Profile:
         numpy.ndarray, shape=(D,)
         """
         return self._mean
+
+    @property
+    def last_image(self) -> np.ndarray:
+        return self._last_image
+
+    @last_image.setter
+    def last_image(self, image: np.ndarray) -> None:
+        self._last_image = image
 
 
 _face_db: Optional[Dict[str, Profile]] = None
@@ -252,7 +262,7 @@ def list_entries() -> List[str]:
 
 
 @load_face_db
-def get_profile(key: str):
+def get_profile(key: str) -> Profile:
     """Returns the profile-instance for the specified profile-name from the database.
     Parameters
     ----------
