@@ -22,4 +22,4 @@ def determine_similarity(desc_1, desc_2, threshold=DESCRIPTOR_THRESHOLD) -> tupl
 
     similarity = _cosine_similarity(desc_1, desc_2)
 
-    return similarity > threshold, similarity
+    return True if similarity > threshold else False, similarity

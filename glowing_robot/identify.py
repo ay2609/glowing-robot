@@ -16,4 +16,3 @@ def identify_face(face: Face) -> None:
         best_profile = get_profile(best_person[0])
         face.profile = best_profile
         best_profile.add_descriptors(best_person[1])
-        face.profile = best_profile
